@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_249453_fetch.fetchUtils</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>fetchUtils</name>
+        <script><![CDATA[var fetchUtils = Class.create();
+fetchUtils.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+    //initialize: function() {
+    //},
+	createDog: function() {
+		var dogName = this.getParamter('sysparm_dog_name');
+		var dogAge = this.getParamter('sysparm_dog_age');
+		var dogShots = this.getParamter('sysparm_dog_shots');
+		var dogNeutered = this.getParamter('sysparm_dog_neutered');
+		
+		//insert dog
+		var newDog = new GlidRecord('x_249453_fetch_dogs');
+		newDog.neRecord();
+		newDog.name = dogName;
+		newDog.age = dogAge;
+		if(dogShots) {
+			newDog.shots = true;
+		}
+		if(dogNeutered) {
+			newDog.neutered = true;
+		}
+		var dogNumber = newDog.number.getDisplayValue();
+		var sysID = newDog.insert();
+		var dogLink = newDog.getLink();
+		
+		//return values
+		return dogName + '|' + dogNumber + '|' + dogLink;
+		
+	},
+    type: 'fetchUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-24 17:30:40</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>4f7b5ebcdba3130050d7ddd0cf961913</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>fetchUtils</sys_name>
+        <sys_package display_value="Fetch" source="x_249453_fetch">f31355b4db23130050d7ddd0cf96193a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Fetch">f31355b4db23130050d7ddd0cf96193a</sys_scope>
+        <sys_update_name>sys_script_include_4f7b5ebcdba3130050d7ddd0cf961913</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-24 19:24:20</sys_updated_on>
+    </sys_script_include>
+</record_update>
